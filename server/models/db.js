@@ -5,11 +5,8 @@ class Model {
     this.table = table;
 
     this.pool = new Pool({
-      user: "gfred",
-      host: "localhost",
-      database: "networth",
-      password: "minerva",
-      port: 5432
+      connectionString: process.env.DATABASE_URL,
+      ssl: true
     });
 
     this.pool.on("error", (err, _client) => {
