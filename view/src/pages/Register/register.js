@@ -81,7 +81,7 @@ class SignUp extends Component {
 
                 <div>
                   <button className="ui fluid large teal submit button">
-                    Sign Up
+                    Register
                   </button>
                 </div>
               </div>
