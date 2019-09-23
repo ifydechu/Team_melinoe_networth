@@ -2,7 +2,7 @@ import express from "express";
 import bodyParse from "body-parser";
 import * as httpStatus from "http-status-codes";
 import Route from "./routes/route";
-import * as cors from "cors";
+import cors from "cors";
 
 const port = process.env.PORT || 3000;
 
