@@ -1,28 +1,28 @@
-import React from 'react';
+import React from "react";
 
-class SignUp extends React.Component{
-    render(){
-        return (
-            <div>
-        <div
-          className="ui middle aligned center aligned grid"
-          style={{ transform: "translateY(30%)" }}
-        >
+import { Link } from "react-router-dom";
+
+import "./login.css";
+
+class Login extends React.Component {
+  render() {
+    return (
+      <div style={{ transform: "translateY(80%)" }} className="contain ">
+        <div className="ui middle aligned center aligned grid">
           <div className="column">
             <h2 className="ui teal image header">
-              <div className="content">Sign-up</div>
+              <div className="content">Login to your Account</div>
             </h2>
             <form className="ui large form error">
               <div className="ui stacked segment">
-                
                 <div className="field">
                   <div className="ui left icon input">
                     <i className="mail icon"></i>
                     <input
                       type="email"
-                      name="email"
+                      name="text"
                       placeholder="E-mail Address"
-                      onChange={this.inputHandler}
+                      onChange={this.onEmailInput}
                       required
                     />
                   </div>
@@ -34,31 +34,34 @@ class SignUp extends React.Component{
                       type="password"
                       name="password"
                       placeholder="Password"
-                      onChange={this.inputHandler}
+                      onChange={this.onPasswordInput}
                       required
-                      minLength="6"
                     />
                   </div>
                 </div>
-                
-                <div>
+
+                <div className="">
+                  {" "}
                   <button
+                    type="submit"
                     className="ui fluid large teal submit button"
                   >
-                    Sign Up
+                    Login
                   </button>
                 </div>
               </div>
-              <div className="ui error message"></div>
-              <div className="ui error message"></div>
-              <div className="ui message">
-                Already have an account? <a href='#'>Login</a>
-              </div>
+
+              <div className="ui error message" type="submit"></div>
             </form>
+            <div className="ui message">
+              <p style={{ fontSize: "1.1rem" }}>
+                New to us? <Link to="/register">Sign Up</Link>
+              </p>
+            </div>
           </div>
         </div>
       </div>
-        )
-    }
+    );
+  }
 }
-export default SignUp;
+export default Login;
