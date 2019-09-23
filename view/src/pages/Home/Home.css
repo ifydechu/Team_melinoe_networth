@@ -1,0 +1,25 @@
+.buttons {
+    margin-top: 50px;
+    text-align: center;
+}
+.home_btn,.home_btn2 {
+    padding: 10px 50px;
+    background: #00b5ad;
+    border-radius: 4px;
+    color: #fff;
+}
+.home_btn:hover {
+    color: #fff;
+}
+.home_btn2 {
+    margin-left: 20px;
+}
+.home_btn2:hover {
+    color: #fff;
+}
+.ui.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-142%);
+}

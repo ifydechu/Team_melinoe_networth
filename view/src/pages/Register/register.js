@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link, Redirect } from "react-router-dom";
 
 class SignUp extends Component {
   constructor() {
@@ -87,7 +88,7 @@ class SignUp extends Component {
               <div className="ui error message"></div>
               <div className="ui error message"></div>
               <div className="ui message">
-                Already have an account? <a href="#">Login</a>
+                Already have an account? <Link to="/login">Login</Link>
               </div>
             </form>
           </div>
