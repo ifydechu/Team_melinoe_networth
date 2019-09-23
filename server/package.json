@@ -1,0 +1,43 @@
+{
+    "name": "net_calculator_api",
+    "version": "1.0.0",
+    "description": "API for HNG Net Calculator app",
+    "main": "index.js",
+    "scripts": {
+        "test": "mocha --exit",
+        "dev-start": "nodemon --exec babel-node index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/gfredtech/netapi.git"
+    },
+    "author": "gfred",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/gfredtech/netapi/issues"
+    },
+    "homepage": "https://github.com/gfredtech/netapi#readme",
+    "dependencies": {
+        "@babel/cli": "^7.5.5",
+        "@babel/core": "^7.5.5",
+        "@babel/node": "^7.5.5",
+        "@babel/plugin-proposal-class-properties": "^7.5.5",
+        "@babel/preset-env": "^7.5.5",
+        "@hapi/joi": "^15.1.1",
+        "babel-eslint": "^10.0.3",
+        "body-parser": "^1.19.0",
+        "eslint-config-airbnb": "^18.0.1",
+        "express": "^4.17.1",
+        "http-status-codes": "^1.3.2",
+        "jsonwebtoken": "^8.5.1",
+        "pg": "^7.12.1"
+    },
+    "devDependencies": {
+        "mocha": "^6.2.0",
+        "mocha-lcov-reporter": "^1.3.0",
+        "eslint": "^6.2.1",
+        "eslint-config-airbnb-base": "^13.2.0",
+        "eslint-plugin-import": "^2.18.2",
+        "nodemon": "^1.19.1"
+    }
+}
