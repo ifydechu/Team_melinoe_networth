@@ -1,6 +1,10 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import logo from "./logo.svg";
+
+import Home from "./pages/Home/Home";
+import Login from "./pages/Login/login";
+import Register from "./pages/Login/login";
+
 import "./App.css";
 
 function App() {
