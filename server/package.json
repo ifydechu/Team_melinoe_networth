@@ -5,6 +5,7 @@
     "main": "index.js",
     "scripts": {
         "test": "mocha test --require @babel/polyfill --require @babel/register --timeout 10000 --exit",
+        "start": "babel-node index.js",
         "dev-start": "nodemon --exec babel-node index.js"
     },
     "repository": {
