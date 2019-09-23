@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from 'react-router-dom';
 
 class SignUp extends React.Component {
   render() {
@@ -49,7 +50,7 @@ class SignUp extends React.Component {
               <div className="ui error message"></div>
               <div className="ui error message"></div>
               <div className="ui message">
-                Already have an account? <a href="#">Login</a>
+                Already have an account? <Link to='/login'>Login</Link>
               </div>
             </form>
           </div>
