@@ -1,4 +1,3 @@
-"use strict";
 import express from "express";
 import bodyParse from "body-parser";
 import * as httpStatus from "http-status-codes";
@@ -19,4 +18,4 @@ app.use("/", (_req, res) => {
 });
 
 app.listen(port, () => console.log(`Web service started on ${port}`));
-module.exports = { app };
+export default app;

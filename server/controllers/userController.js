@@ -1,12 +1,13 @@
 import * as httpStatus from "http-status-codes";
 import Model from "../models/db";
-import { jwt } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
+import * as argon2 from "argon2";
 
 const model = () => new Model("users");
 
 const signUp = async (req, res) => {
   try {
-    let { name, email, password } = req.body;
+    let { email, password } = req.body;
     const user = await model().select("*", "email=$1", [email]);
     if (user[0]) {
       return res.status(httpStatus.CONFLICT).json({
@@ -15,12 +16,12 @@ const signUp = async (req, res) => {
       });
     }
 
-    password = await encryptedPassword(password);
-    const cols = "name, email, password";
-    const sels = `'${name}', '${email}', '${password}'`;
+    password = await argon2.hash(password);
+    const cols = "email, password";
+    const sels = `'${email}', '${password}'`;
     let row = await model().insert(cols, sels);
 
-    let jwToken = generateToken(row[0].id, row[0].email, row[0].name);
+    let jwToken = generateToken(row[0].id, row[0].email);
 
     return res.status(httpStatus.CREATED).json({
       status: "201",
@@ -30,8 +31,10 @@ const signUp = async (req, res) => {
       }
     });
   } catch (e) {
+    console.log(e);
     return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
-      status: "Internal Server error",
+      status: httpStatus.INTERNAL_SERVER_ERROR,
+      message: "Internal Server error",
       error: e
     });
   }
@@ -43,12 +46,8 @@ const login = async (req, res) => {
     const { email, password } = req.body;
     const isLogin = await model().select("*", "email=$1", [email]);
 
-    if (isLogin[0] && comparePassword(password, isLogin[0].password)) {
-      const jwToken = generateToken(
-        isLogin[0].id,
-        isLogin[0].email,
-        isLogin[0].name
-      );
+    if (isLogin[0] && (await argon2.verify(isLogin[0].password, password))) {
+      const jwToken = generateToken(isLogin[0].id, isLogin[0].email);
       return res.status(httpStatus.OK).json({
         status: 200,
         message: "User logged in successfully",
@@ -62,21 +61,20 @@ const login = async (req, res) => {
       error: "error: Invalid email or password"
     });
   } catch (e) {
-    console.log(e);
     return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
       status: httpStatus.INTERNAL_SERVER_ERROR,
-      error: "Internal server error"
+      message: "Internal server error",
+      error: e
     });
   }
 };
 
-const generateToken = (id, email, name) => {
-  const signature = "";
+const generateToken = (id, email) => {
+  const signature = "LEET_K0D3";
   const token = jwt.sign(
     {
       Id: id,
-      email: email,
-      name: name
+      email: email
     },
     signature,
     { expiresIn: "1d" }
@@ -84,7 +82,4 @@ const generateToken = (id, email, name) => {
   return token;
 };
 
-module.exports = {
-  login,
-  signUp
-};
+export { login, signUp };
