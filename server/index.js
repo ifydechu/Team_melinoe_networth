@@ -7,6 +7,7 @@ const port = process.env.PORT || 3000;
 
 const app = express();
 app.use(bodyParse.json());
+app.use(bodyParse.urleconded({ extended: false }));
 
 app.use("/api/v1", Route);
 
