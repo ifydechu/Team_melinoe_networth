@@ -8,6 +8,7 @@ const model = () => new Model("users");
 const signUp = async (req, res) => {
   try {
     let { email, password } = req.body;
+    console.log("ghh", email, password);
     const user = await model().select("*", "email=$1", [email]);
     if (user[0]) {
       return res.status(httpStatus.CONFLICT).json({
