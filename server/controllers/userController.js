@@ -45,6 +45,7 @@ const login = async (req, res) => {
   console.log("Hello");
   try {
     const { email, password } = req.body;
+    console.log("ghh", email, password);
     const isLogin = await model().select("*", "email=$1", [email]);
 
     if (isLogin[0] && (await argon2.verify(isLogin[0].password, password))) {
