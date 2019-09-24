@@ -97,6 +97,7 @@ class Login extends Component {
                   <button
                     type="submit"
                     className="ui fluid large teal submit button"
+                    disable={isLoggedIn}
                   >
                     {loading ? "Hold on..." : "Login"}
                   </button>
