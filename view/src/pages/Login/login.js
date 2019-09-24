@@ -88,7 +88,7 @@ class Login extends Component {
                     type="submit"
                     className="ui fluid large teal submit button"
                   >
-                    Login
+                    <Link to='/calculator'>Login</Link>
                   </button>
                 </div>
               </div>
