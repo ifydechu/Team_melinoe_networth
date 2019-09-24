@@ -16,7 +16,9 @@ class Calculator extends React.Component {
         TotalLiability:0,
         networth: 0,
         Asset:0,
-        liability:0
+        liability:0,
+        isAssetClick:false,
+        isliabilityClick:false
     }
 
     TotalAsset=()=> {
@@ -30,11 +32,19 @@ class Calculator extends React.Component {
         }
         this.setState({Asset:TotalAsset})
         console.log(this.state.Asset)
+        this.setState({isAssetClick:true})
         
 
     }
-    networth=(l,A)=> {
-        this.setState({networth:l - A})
+    networth=(A,l)=> {
+        this.setState({networth:A - l})
+        this.setState({isAssetClick:false})
+        this.setState({isliabilityClick:false})
+        this.setState({liabilityArray:[]})
+        this.setState({assetArray:[]})
+        this.setState({TotalAsset:0})
+        this.setState({TotalLiability:0})
+        
     }
     
 
@@ -48,7 +58,7 @@ class Calculator extends React.Component {
 
         }
         this.setState({liability:TotalLiability})
-        
+        this.setState({isliabilityClick:true})
         console.log(TotalLiability);
     }
 
@@ -70,6 +80,7 @@ class Calculator extends React.Component {
 
             ]
         }))
+        
     }
 
     onAssetAdd = () => {
@@ -85,6 +96,7 @@ class Calculator extends React.Component {
 
             ]
         }))
+        
         
     }
         // this.setState(state => ({
@@ -158,7 +170,7 @@ class Calculator extends React.Component {
                                     </tbody>
                                 </table>
                             </div>
-                            <button className='ui primary button' onClick={this.TotalAsset} style={{marginRight:'20px'}}>Generate Total Amount of Assets</button>
+                            <button className='ui primary button' onClick={this.TotalAsset} style={{marginRight:'20px'}} disabled={this.state.isAssetClick}>Generate Total Amount of Assets</button>
                             <span style={{fontSize:'20px'}} ref={a=>this._inputElement=a}>&#8358;{this.state.TotalAsset}</span>
 
                         </div>
@@ -179,13 +191,13 @@ class Calculator extends React.Component {
                                     </tbody>
                                 </table>
                             </div>
-                            <button className='ui primary button' onClick={this.TotalLiability} style={{marginRight:'20px'}}>Generate Total Amount of Liabilities</button>
+                            <button className='ui primary button' onClick={this.TotalLiability} style={{marginRight:'20px'}} disabled={this.state.isliabilityClick}>Generate Total Amount of Liabilities</button>
                             <span style={{fontSize:'20px'}}>&#8358;{this.state.TotalLiability}</span>
                         </div>
                     </div>
                     <div className='Total'>
                         <h4>Note: Total net-worth = Total Amount of liabilities - Total Amount of Assets</h4>
-                        <button className='massive ui primary button' type='submit' onClick={()=>this.networth(this.state.liability,this.state.Asset)}>Calculate the Total Net-worth</button>
+                        <button className='massive ui primary button' type='submit' onClick={()=>this.networth(this.state.Asset,this.state.liability)} disabled={this.state.isliabilityClick && this.state.isAssetClick ? false : true}>Calculate the Total Net-worth</button>
                     </div>
                 </div>
                 
