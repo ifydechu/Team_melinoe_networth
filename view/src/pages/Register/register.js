@@ -7,7 +7,10 @@ class SignUp extends Component {
 
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      isLoggedIn: false,
+      loading: false,
+      error: ""
     };
   }
 
@@ -21,10 +24,11 @@ class SignUp extends Component {
 
   // Submit details to the backend
   onSubmit = e => {
+    this.setState({ loading: true });
     e.preventDefault();
     const { email, password } = this.state;
 
-    fetch("", {
+    fetch("https://hidden-island-59990.herokuapp.com/api/v1/auth/signup", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -33,11 +37,24 @@ class SignUp extends Component {
       })
     })
       .then(res => res.json())
-      .then();
+      .then(user => {
+        if (user.message === "User created successfully") {
+          this.setState({ loading: false });
+          this.setState({ isLoggedIn: true });
+        } else if (user.error) {
+          this.setState({ loading: false });
+          this.setState({ error: user.error });
+        }
+      });
   };
 
   render() {
-    return (
+    const { isLoggedIn, error } = this.state;
+    //console.log(error);
+
+    return isLoggedIn ? (
+      <Redirect to="/calculator" />
+    ) : (
       <div>
         <div
           className="ui middle aligned center aligned grid"
@@ -45,7 +62,7 @@ class SignUp extends Component {
         >
           <div className="column">
             <h2 className="ui teal image header">
-              <div className="content">Sign-up</div>
+              <div className="content">Register with us</div>
             </h2>
             <form
               className="ui large form error"
@@ -80,13 +97,16 @@ class SignUp extends Component {
                 </div>
 
                 <div>
-                  <button className="ui fluid large teal submit button">
-                    Register
+                  <button
+                    className="ui fluid large teal submit button"
+                    disabled={this.state.loading}
+                  >
+                    {this.state.loading ? "Sending..." : "Register"}
                   </button>
                 </div>
               </div>
-              <div className="ui error message"></div>
-              <div className="ui error message"></div>
+              <div className="ui error message">{error}</div>
+
               <div className="ui message">
                 Already have an account? <Link to="/login">Login</Link>
               </div>
