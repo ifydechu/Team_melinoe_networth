@@ -33,8 +33,8 @@ class Calculator extends React.Component {
         
 
     }
-    networth=(A,l)=> {
-        this.setState({networth:A + l})
+    networth=(l,A)=> {
+        this.setState({networth:l - A})
     }
     
 
@@ -85,6 +85,7 @@ class Calculator extends React.Component {
 
             ]
         }))
+        
     }
         // this.setState(state => ({
             // assetArray: state.assetArray.concat([{
@@ -102,6 +103,7 @@ class Calculator extends React.Component {
                     
                     <div className="row">
                         <div className="column">
+                        <h1>Assets</h1>
                             <div className="ui segment">
                                 <div className="ui form">
                                     <div className="three fields">
@@ -120,6 +122,7 @@ class Calculator extends React.Component {
                             </div>
                         </div>
                         <div className="column">
+                            <h1>Liabilities</h1>
                             <div className="ui segment">
                                 <div className="ui form">
                                     <div className="three fields">
@@ -140,6 +143,7 @@ class Calculator extends React.Component {
                     </div>
                     <div className="row">
                         <div className="column">
+                            
                             <div className="ui segment">
                                 <table className="ui celled table">
                                     <thead>
@@ -180,8 +184,8 @@ class Calculator extends React.Component {
                         </div>
                     </div>
                     <div className='Total'>
-                        <h4>Note: Total net-worth = Total Amount of Assets - Total Amount of Liabilities</h4>
-                        <button className='massive ui primary button' type='submit' onClick={()=>this.networth(this.state.Asset,this.state.liability)}>Calculate the Total Net-worth</button>
+                        <h4>Note: Total net-worth = Total Amount of liabilities - Total Amount of Assets</h4>
+                        <button className='massive ui primary button' type='submit' onClick={()=>this.networth(this.state.liability,this.state.Asset)}>Calculate the Total Net-worth</button>
                     </div>
                 </div>
                 
