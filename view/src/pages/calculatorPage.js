@@ -3,6 +3,8 @@ import '../pages/calculatorPage.css'
 
 
 class Calculator extends React.Component {
+    
+    
     state = {
         assetName: '',
         assetAmount: 0,
@@ -31,17 +33,22 @@ class Calculator extends React.Component {
         
 
     }
-    NetWorth =()=> {
-        this.setState({networth:this.state.Asset - this.state.liability})
+    networth=(A,l)=> {
+        this.setState({networth:A + l})
     }
+    
 
     TotalLiability=()=> {
         let {liabilityArray,TotalLiability}=this.state;
         for(let i=0;i<liabilityArray.length;i++) {
             TotalLiability = TotalLiability + liabilityArray[i].liabilityAmount;
             this.setState({TotalLiability})
-            this.setState({liability:TotalLiability})
+            
+            
+
         }
+        this.setState({liability:TotalLiability})
+        
         console.log(TotalLiability);
     }
 
@@ -86,6 +93,7 @@ class Calculator extends React.Component {
             // }])
         // }));
     render() {
+        
         return (
             <div className='content'>
                 <h1 style={{textAlign:'center',marginTop:'5.5em'}}>Melinoe Net-worth Calculator</h1>
@@ -147,7 +155,7 @@ class Calculator extends React.Component {
                                 </table>
                             </div>
                             <button className='ui primary button' onClick={this.TotalAsset} style={{marginRight:'20px'}}>Generate Total Amount of Assets</button>
-                            <span style={{fontSize:'20px'}}>{this.state.TotalAsset}</span>
+                            <span style={{fontSize:'20px'}} ref={a=>this._inputElement=a}>&#8358;{this.state.TotalAsset}</span>
 
                         </div>
                         <div className="column">
@@ -168,12 +176,12 @@ class Calculator extends React.Component {
                                 </table>
                             </div>
                             <button className='ui primary button' onClick={this.TotalLiability} style={{marginRight:'20px'}}>Generate Total Amount of Liabilities</button>
-                            <span style={{fontSize:'20px'}}>{this.state.TotalLiability}</span>
+                            <span style={{fontSize:'20px'}}>&#8358;{this.state.TotalLiability}</span>
                         </div>
                     </div>
                     <div className='Total'>
                         <h4>Note: Total net-worth = Total Amount of Assets - Total Amount of Liabilities</h4>
-                        <button className='massive ui primary button' onClick={this.networth}>Calculate the Total Net-worth</button>
+                        <button className='massive ui primary button' type='submit' onClick={()=>this.networth(this.state.Asset,this.state.liability)}>Calculate the Total Net-worth</button>
                     </div>
                 </div>
                 
