@@ -97,9 +97,9 @@ class Calculator extends React.Component {
         
         return (
             <div className='content'>
-                <h1 style={{textAlign:'center',marginTop:'5.5em'}}>Melinoe Net-worth Calculator</h1>
+                <h1 style={{textAlign:'center'}}>Melinoe Net-worth Calculator</h1>
                 <h2 style={{textAlign:'center'}}>Your Net-worth is &#8358;{this.state.networth} for now</h2>
-                <div className="ui stackable two column divided grid container" style={{transform: 'translate(-41%,-12em)'}}>
+                <div className="ui stackable two column divided grid container" style={{transform: 'translate(-41%,-12em)'}} id='main'>
                     
                     <div className="row">
                         <div className="column">
