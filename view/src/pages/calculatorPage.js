@@ -196,7 +196,7 @@ class Calculator extends React.Component {
                         </div>
                     </div>
                     <div className='Total'>
-                        <h4>Note: Total net-worth = Total Amount of liabilities - Total Amount of Assets</h4>
+                        <h4>Note: Total net-worth = Total Amount of Assets - Total Amount of Liabilities</h4>
                         <button className='massive ui primary button' type='submit' onClick={()=>this.networth(this.state.Asset,this.state.liability)} disabled={this.state.isliabilityClick && this.state.isAssetClick ? false : true}>Calculate the Total Net-worth</button>
                     </div>
                 </div>
