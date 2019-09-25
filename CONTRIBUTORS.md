@@ -2,4 +2,4 @@
 2. [Gfred](https://github.com/gfredtech)
 3. [Bisiriyu Saulih](https://github.com/horlard)
 4. [Favour Chibueze](https://github.com/favour-chibueze)
-5. [fatai Abdulazeez] (https://github.com/olivertwist001)
+5. [fatai Abdulazeez](https://github.com/olivertwist001)
