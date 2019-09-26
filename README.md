@@ -3,7 +3,7 @@
 
 An app that takes in assets and cash detail, and calculates <b>how much the user is worth<b>.
 
-<img src="https://res.cloudinary.com/vectormike/image/upload/v1569323885/screencapture-localhost-3002-calculator-2019-09-24-11_32_40.png">
+<img src="https://res.cloudinary.com/dnn8xyybs/image/upload/v1569504550/screencapture-localhost-3002-calculator-2019-09-24-11_32_40_ewh5ya.png">
 
 
 
